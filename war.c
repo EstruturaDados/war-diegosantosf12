@@ -15,7 +15,6 @@ typedef struct {
 int main() {
     Territorio mapa[NUM_TERRITORIOS]; // apenas declaração para esta parte
     printf("Parte 1 ok: struct Territorio e vetor static criados.\n");
-    return 0;
 
     //Parte2_entrada.c
 
@@ -40,11 +39,8 @@ int main() {
         while ((c = getchar()) != '\n' && c != EOF) { } // limpa buffer
     }
 
-    return 0;
-
 // parte3_saida.c
 
-    // Saída organizada
     printf("\n=== Estado Atual do Mapa ===\n");
     printf("%-20s %-18s %-10s\n", "Território", "Cor do Exército", "Tropas");
     printf("--------------------------------------------------------\n");
