@@ -17,3 +17,29 @@ int main() {
     printf("Parte 1 ok: struct Territorio e vetor static criados.\n");
     return 0;
 }
+// parte2_entrada.c
+
+    for (int i = 0; i < NUM_TERRITORIOS; i++) {
+        printf("\n--- Cadastro do Território %d ---\n", i + 1);
+
+        printf("Nome do território: ");
+        fgets(mapa[i].nome, MAX, stdin);
+        mapa[i].nome[strcspn(mapa[i].nome, "\n")] = '\0';
+
+        printf("Cor do exército: ");
+        fgets(mapa[i].corExercito, MAX, stdin);
+        mapa[i].corExercito[strcspn(mapa[i].corExercito, "\n")] = '\0';
+
+        printf("Número de tropas: ");
+        while (scanf("%d", &mapa[i].tropas) != 1) {
+            printf("Valor inválido. Digite um número inteiro: ");
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF) { }
+        }
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) { } // limpar buffer
+    }
+
+    printf("\nParte 2 ok: dados lidos.\n");
+    return 0;
+}
