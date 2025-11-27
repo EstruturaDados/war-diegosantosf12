@@ -17,6 +17,8 @@ int main() {
     printf("Parte 1 ok: struct Territorio e vetor static criados.\n");
     return 0;
 
+    //Parte2_entrada.c
+
     for (int i = 0; i < NUM_TERRITORIOS; i++) {
         printf("\n--- Cadastro do Território %d ---\n", i + 1);
 
@@ -36,6 +38,19 @@ int main() {
         }
         int c;
         while ((c = getchar()) != '\n' && c != EOF) { } // limpa buffer
+    }
+
+    return 0;
+
+// parte3_saida.c
+
+    // Saída organizada
+    printf("\n=== Estado Atual do Mapa ===\n");
+    printf("%-20s %-18s %-10s\n", "Território", "Cor do Exército", "Tropas");
+    printf("--------------------------------------------------------\n");
+    for (int i = 0; i < NUM_TERRITORIOS; i++) {
+        printf("%-20s %-18s %-10d\n",
+               mapa[i].nome, mapa[i].corExercito, mapa[i].tropas);
     }
 
     return 0;
