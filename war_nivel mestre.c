@@ -6,17 +6,20 @@
 #define MAX 50
 #define NUM_TERRITORIOS 5
 
+// Estrutura do território
 typedef struct {
     char nome[MAX];
     char corExercito[MAX];
     int tropas;
 } Territorio;
 
+// Função para limpar o buffer do teclado
 void limparBuffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF) {}
 }
 
+// Cadastro dos territórios com alocação dinâmica
 Territorio* inicializarMapa() {
     Territorio *mapa = (Territorio *)calloc(NUM_TERRITORIOS, sizeof(Territorio));
     if (!mapa) {
@@ -43,6 +46,7 @@ Territorio* inicializarMapa() {
     return mapa;
 }
 
+// Exibe o estado atual do mapa
 void exibirMapa(Territorio *mapa) {
     printf("\nEstado Atual do Mapa\n");
     for (int i = 0; i < NUM_TERRITORIOS; i++) {
@@ -51,6 +55,7 @@ void exibirMapa(Territorio *mapa) {
     }
 }
 
+// Simula uma batalha entre dois territórios
 void simularBatalha(Territorio *mapa) {
     int atacante, defensor;
     int dadoAtaque, dadoDefesa;
@@ -61,14 +66,17 @@ void simularBatalha(Territorio *mapa) {
     scanf("%d", &defensor);
     limparBuffer();
 
-    atacante--; defensor--;
+    atacante--;
+    defensor--;
 
+    // Validação das escolhas
     if (atacante == defensor || atacante < 0 || defensor < 0 ||
         atacante >= NUM_TERRITORIOS || defensor >= NUM_TERRITORIOS) {
         printf("Escolha invalida.\n");
         return;
     }
 
+    // Sorteio dos dados
     dadoAtaque = rand() % 6 + 1;
     dadoDefesa = rand() % 6 + 1;
 
@@ -76,6 +84,7 @@ void simularBatalha(Territorio *mapa) {
     printf("Ataque (%s): %d\n", mapa[atacante].nome, dadoAtaque);
     printf("Defesa (%s): %d\n", mapa[defensor].nome, dadoDefesa);
 
+    // Lógica da batalha
     if (dadoAtaque >= dadoDefesa) {
         mapa[defensor].tropas--;
         printf("O atacante venceu.\n");
@@ -96,6 +105,7 @@ int main() {
     Territorio *mapa = inicializarMapa();
     char continuar;
 
+    // Loop de batalhas
     do {
         simularBatalha(mapa);
         exibirMapa(mapa);
@@ -103,4 +113,7 @@ int main() {
         scanf(" %c", &continuar);
         limparBuffer();
     } while (continuar == 's' || continuar == 'S');
+
+    free(mapa);
+    return 0;
 }
